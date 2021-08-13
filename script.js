@@ -13,6 +13,9 @@ let changingDirection = false;
 let xVelocity = 10;
 let yVelocity = 0;
 
+let foodx;
+let foody;
+
 
 const clearCanvas = () => {
   boardContext.fillStyle = 'grey'
@@ -37,7 +40,12 @@ const advanceSnake = () => {
     x: snake[0].x + xVelocity, 
     y: snake[0].y + yVelocity
   })
-  snake.pop()
+
+  if(snake[0].x === foodx && snake[0].y === foody) {
+    createFood()
+  } else{
+    snake.pop()
+  }
 }
 
 const hasGameEnded = () => {
@@ -89,6 +97,28 @@ const changeDirection = ({ keyCode }) => {
 
 document.addEventListener('keydown', changeDirection)
 
+const createFood = () => {
+
+  const randomFoodCoords = (min, max) => {
+    return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+  }
+
+  foodx = randomFoodCoords(0, board.width - 10)
+  foody = randomFoodCoords(0, board.height - 10)
+  
+  snake.forEach((i) => {
+    if ( i.x === foodx && i.y === foody) createFood();
+  })
+}
+
+const drawFood = () => {
+  boardContext.fillStyle = 'red'
+  boardContext.strokestyle = 'maroon'
+  boardContext.fillRect(foodx, foody, 10, 10)
+  boardContext.strokeRect(foodx, foody, 10, 10)
+}
+
+createFood()
 const main = () => {
   if (hasGameEnded()) {
     boardContext.fillStyle = "black"
@@ -102,6 +132,7 @@ const main = () => {
     clearCanvas()
     advanceSnake()
     drawSnake()
+    drawFood()
     main()
   }, 200)
 }
