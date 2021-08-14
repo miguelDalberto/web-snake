@@ -1,6 +1,12 @@
 const board = document.getElementById('board')
 const boardContext = board.getContext('2d')
 
+const upButton = document.getElementById('up-button')
+const downButton = document.getElementById('down-button')
+const leftButton = document.getElementById('left-button')
+const rightButton = document.getElementById('right-button')
+
+
 let snake = [
   {x: 200, y: 200},
   {x: 190, y: 200},
@@ -104,6 +110,10 @@ const changeDirection = ({ keyCode }) => {
 }
 
 document.addEventListener('keydown', changeDirection)
+upButton.addEventListener('click', () => changeDirection({ keyCode: 38}))
+downButton.addEventListener('click', () => changeDirection({ keyCode: 40}))
+leftButton.addEventListener('click', () => changeDirection({ keyCode: 37}))
+rightButton.addEventListener('click', () => changeDirection({ keyCode: 39}))
 
 const createFood = () => {
 
