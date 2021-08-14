@@ -1,0 +1,36 @@
+body {
+  text-align: center;
+}
+
+button {
+  border-radius: 40%;
+  background-color: #8cafbf;
+  font-size: 2em;
+}
+
+.buttons {
+  display: grid;
+  width: 10em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#up-button {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#left-button {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#right-button {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+#down-button {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
