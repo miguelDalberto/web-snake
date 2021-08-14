@@ -16,6 +16,7 @@ let yVelocity = 0;
 let foodx;
 let foody;
 
+let score = 0;
 
 const clearCanvas = () => {
   boardContext.fillStyle = 'grey'
@@ -42,6 +43,8 @@ const advanceSnake = () => {
   })
 
   if(snake[0].x === foodx && snake[0].y === foody) {
+    score += 10;
+    document.getElementById("score").innerText = "Score: " + score;
     createFood()
   } else{
     snake.pop()
