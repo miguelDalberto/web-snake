@@ -27,12 +27,17 @@ const clearCanvas = () => {
 }
 
 const drawSnake = () => {
-  snake.forEach((i) => {
-    boardContext.fillStyle = 'lightgreen'
-    boardContext.strokestyle = 'darkgreen'
+  snake.forEach((e, i) => {
+    if (i % 3 === 0 || (i-1) % 3 === 0) {
+      boardContext.fillStyle = 'lightgreen'
+      boardContext.strokestyle = 'darkgreen'
+    } else {
+      boardContext.fillStyle = 'darkgreen'
+      boardContext.strokestyle = 'lightgreen'
+    }
 
-    boardContext.fillRect(i.x, i.y, 10, 10)
-    boardContext.strokeRect(i.x, i.y, 10, 10)
+    boardContext.fillRect(e.x, e.y, 10, 10)
+    boardContext.strokeRect(e.x, e.y, 10, 10)
   })
 }
 
